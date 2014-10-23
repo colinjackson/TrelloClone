@@ -19,6 +19,6 @@ class Board < ActiveRecord::Base
 
   def is_member?(u)
     return true if u.id == self.user_id
-    board_memberships.where(user_id: u.id).exists?
+    board_memberships.exists?(user_id: u.id)
   end
 end

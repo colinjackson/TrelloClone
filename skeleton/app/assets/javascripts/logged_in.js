@@ -10,8 +10,12 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require jquery.ui.sortable
-//= require underscore
-//= require bootstrap
+//= require backbone
+//= require trello_clone
+//= require_tree ../templates
+//= require_tree ./utils
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
+//= require_tree .

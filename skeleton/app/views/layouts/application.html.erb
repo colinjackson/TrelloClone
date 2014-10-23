@@ -3,7 +3,12 @@
 <head>
   <title>Trello Clone</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application" %>
+
+	<%= javascript_include_tag "application" %>
+	<% if signed_in? %>
+	  <%= javascript_include_tag "logged_in" %>
+	<% end %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
