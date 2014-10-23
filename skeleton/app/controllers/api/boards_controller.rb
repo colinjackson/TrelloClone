@@ -23,7 +23,7 @@ module Api
 
     def show
       begin
-        @board = Board.includes(:members, lists: :cards).find(params[:id])
+        @board = Board.includes(:user, :members, lists: :cards).find(params[:id])
       rescue ActiveRecord::RecordNotFound
         render json: {error: "That board doesn't exist!"}, status: 404
         return
