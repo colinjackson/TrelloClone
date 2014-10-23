@@ -22,12 +22,17 @@ module Api
     end
 
     def show
-      @board = Board.includes(:members, lists: :cards).find(params[:id])
+      begin
+        @board = Board.includes(:members, lists: :cards).find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render json: {error: "That board doesn't exist!"}, status: 404
+        return
+      end
 
-      if @board.is_member?(current_user)
+      if @board && @board.is_member?(current_user)
         render :show
       else
-        render json: ["You aren't a member of this board"], status: 403
+        render json: {error: "You aren't a member of this board"}, status: 403
       end
     end
 
