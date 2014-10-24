@@ -8,11 +8,11 @@ json.user_email @board.user.email
 
 unless @board.lists.empty?
 	json.lists @board.lists do |list|
-		json.(list, :id, :title, :updated_at)
+		json.(list, :id, :title, :ord)
 
 		unless list.cards.empty?
 			json.cards list.cards do |card|
-				json.(card, :id, :title, :description, :updated_at)
+				json.(card, :id, :title, :description, :ord)
 			end
 		end
 	end
