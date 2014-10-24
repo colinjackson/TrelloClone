@@ -1,14 +1,20 @@
 TrelloClone.Views.CardForm = Backbone.View.extend({
   template: JST['cards/_form'],
 
-  initialize: function () {
+  initialize: function (options) {
+    this.superview = options.superview;
     this.formActive = false;
   },
 
   events: {
+    'click': 'keepAlive',
     'click .show-card-form': 'showForm',
     'click button.save-card-form': 'saveCard',
     'click button.close-card-form': 'closeForm'
+  },
+
+  keepAlive: function (event) {
+    event.stopPropagation();
   },
 
   render: function () {
@@ -22,6 +28,7 @@ TrelloClone.Views.CardForm = Backbone.View.extend({
   },
 
   showForm: function (event) {
+    this.superview.superview.dismissOtherForms(this);
     this.formActive = true;
     this.render();
     this.$('#card_title').focus();

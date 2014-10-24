@@ -1,15 +1,16 @@
 TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
 	template: JST['lists/show'],
 
-	initialize: function () {
+	initialize: function (options) {
+		this.superview = options.superview;
+
 		this.listenTo(this.model, 'change', this.render);
 		this.listenTo(this.model.cards(), 'add', this.addCard);
 		this.listenTo(this.model.cards(), 'remove', this.removeCard);
 	},
 
 	events: {
-		'click button.delete-list': 'deleteList',
-		'blur div#new-card-form': 'dismissForm'
+		'click button.delete-list': 'deleteList'
 	},
 
 	deleteList: function (event) {
@@ -40,17 +41,18 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
 	},
 
 	renderNewCard: function () {
-		this.subviews('div#new-card-form').forEach(function (subview) {
-			this.removeSubview('div#new-card-form', subview);
+		this.subviews('div.new-card-form').forEach(function (subview) {
+			this.removeSubview('div.new-card-form', subview);
 		}.bind(this));
 
 		var newCard = new TrelloClone.Models.Card({list_id: this.model.id});
 		var subview = new TrelloClone.Views.CardForm({
+			superview: this,
 			model: newCard,
 			collection: this.model.cards()
 		});
 
-		this.addSubview('div#new-card-form', subview);
+		this.addSubview('div.new-card-form', subview);
 
 		return this;
 	},
@@ -64,18 +66,20 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
 	},
 
 	removeCard: function (card) {
-		var subview = this.subviews().filter(function (subview) {
-			this.subview.model === card;
+		var subview = this.subviews('ul.list-cards').filter(function (subview) {
+			return subview.model === card;
 		})[0];
 
 		this.removeSubview('ul.list-cards', subview);
 	},
 
-	dismissForm: function (event) {
-		var cardForm = this.subviews('div#new-card-form')[0];
+	dismissNewCardForm: function (event) {
+		var cardForm = this.subviews('div.new-card-form')[0];
 
-		cardForm.formActive = false;
-		cardForm.render();
+		if (cardForm.formActive) {
+			cardForm.formActive = false;
+			cardForm.render();
+		}
 	}
 
 });

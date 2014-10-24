@@ -1,14 +1,20 @@
 TrelloClone.Views.ListForm = Backbone.View.extend({
 	template: JST['lists/_form'],
 
-	initialize: function () {
+	initialize: function (options) {
+		this.superview = options.superview;
 		this.formActive = false;
 	},
 
 	events: {
+		'click': 'keepAlive',
 		'click .show-list-form': 'showForm',
 		'click button.save-list-form': 'saveList',
 		'click button.close-list-form': 'closeList'
+	},
+
+	keepAlive: function (event) {
+		event.stopPropagation();
 	},
 
 	render: function () {
@@ -22,6 +28,7 @@ TrelloClone.Views.ListForm = Backbone.View.extend({
 	},
 
 	showForm: function (event) {
+		this.superview.dismissOtherForms(this);
 		this.formActive = true;
 		this.render();
 		this.$('#list_title').focus();
