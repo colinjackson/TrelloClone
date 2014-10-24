@@ -8,7 +8,7 @@ TrelloClone.Models.Card = Backbone.Model.extend({
 		}
 
 		return jsonResp;
-	}
+	},
 
 	items: function () {
 		if (!this._items) {

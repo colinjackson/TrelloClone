@@ -7,6 +7,7 @@ TrelloClone.Views.CardItem = Backbone.View.extend({
 	},
 
 	events: {
+		'click a.display-modal': 'displayModal',
 		'click button.delete-card': 'deleteCard'
 	},
 
@@ -17,6 +18,13 @@ TrelloClone.Views.CardItem = Backbone.View.extend({
 		this.$el.html(renderedContent);
 
 		return this;
+	},
+
+	displayModal: function (event) {
+		event.preventDefault();
+
+		var fragment = "cards/" + this.model.id;
+		Backbone.history.navigate(fragment, {trigger: true});
 	},
 
 	deleteCard: function (event) {

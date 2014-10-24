@@ -34,8 +34,8 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 	},
 
 	renderNewList: function () {
-		this.subviews('div#new-list-form').forEach(function (subview) {
-			this.removeSubview('div#new-list-form', subview);
+		this.subviews('div.new-list-form').forEach(function (subview) {
+			this.removeSubview('div.new-list-form', subview);
 		}.bind(this));
 
 		var newList = new TrelloClone.Models.List({board_id: this.model.id});
@@ -44,7 +44,7 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 			model: newList,
 			collection: this.model.lists()
 		});
-		this.addSubview('div#new-list-form', subview);
+		this.addSubview('div.new-list-form', subview);
 
 		return this;
 	},
@@ -72,7 +72,7 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
 	dismissOtherForms: function (currentForm) {
 		forms = [];
-		forms.push(this.subviews('div#new-list-form')[0]);
+		forms.push(this.subviews('div.new-list-form')[0]);
 
 		this.subviews('ul.board-lists').forEach(function (listSubview) {
 			forms.push(listSubview.subviews('div.new-card-form')[0]);

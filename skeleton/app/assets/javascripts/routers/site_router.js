@@ -1,6 +1,7 @@
 TrelloClone.Routers.SiteRouter = Backbone.Router.extend({
 	initialize: function (options) {
 		this.$rootEl = options.$rootEl;
+		this.$modalEl = options.$modalEl;
 		this.boards = TrelloClone.Collections.boards;
 	},
 
@@ -30,26 +31,30 @@ TrelloClone.Routers.SiteRouter = Backbone.Router.extend({
 
 	cardShowModal: function (id) {
 		var card = new TrelloClone.Models.Card({id: id});
-		var view = new TrelloClone.Views.CardShow({
+		card.fetch();
+		var view = new TrelloClone.Views.CardModal({
 			model: card
 		});
 
 		this._swapModal(view);
-	}
+	},
 
 	_swapView: function (view) {
+		this._clearModal();
+
 		this._currentView && this._currentView.remove();
 		this.$rootEl.html(view.render().$el);
 		this._currentView = view;
 	},
 
 	_swapModal: function (view) {
-		this._currentModal && this._currentModal.remove();
+		this._clearModal();
+
 		this.$modalEl.html(view.render().$el);
 		this._currentModal = view;
 	},
 
 	_clearModal: function () {
-		this.$modalEl.empty();
+		this.$_currentModal && this._currentModal.remove();
 	}
 })
