@@ -1,0 +1,12 @@
+<% if (!formActive) { %>
+  <a class="show-card-form" href="javascript:void(0)">Add a card...</a>
+<% } else { %>
+  <form>
+    <input type="hidden" name="card[list_id]"
+        value="<%= card.get("list_id") %>">
+    <input type="text" name="card[title]" id="card_title"
+        value="<%= card.get("title") %>">
+    <button class="save-card-form">Save</button>
+    <button class="close-card-form">Close</button>
+  </form>
+<% } %>

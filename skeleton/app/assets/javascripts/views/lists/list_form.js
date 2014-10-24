@@ -1,5 +1,4 @@
 TrelloClone.Views.ListForm = Backbone.View.extend({
-	tagName: 'form',
 	template: JST['lists/_form'],
 
 	initialize: function () {
@@ -7,8 +6,9 @@ TrelloClone.Views.ListForm = Backbone.View.extend({
 	},
 
 	events: {
-		"click .show-list-form": "showForm",
-		"click button": "saveModel"
+		'click .show-list-form': 'showForm',
+		'click button.save-list-form': 'saveList',
+		'click button.close-list-form': 'closeList'
 	},
 
 	render: function () {
@@ -24,19 +24,25 @@ TrelloClone.Views.ListForm = Backbone.View.extend({
 	showForm: function (event) {
 		this.formActive = true;
 		this.render();
+		this.$('#list_title').focus();
 	},
 
-	saveModel: function (event) {
+	saveList: function (event) {
 		event.preventDefault();
 
-		var formData = this.$el.serializeJSON();
-		var board = TrelloClone.Collections.boards.get(this.model.get("board_id"));
-
-		board.lists().create(formData, {
+		var formData = this.$('form').serializeJSON();
+		this.collection.create(formData, {
 			success: function () {
-				this.formActive = false;
 				this.render();
+				this.$('#list_title').focus();
 			}.bind(this)
 		});
+	},
+
+	closeList: function (event) {
+		event.preventDefault();
+
+		this.formActive = false;
+		this.render();
 	}
 })

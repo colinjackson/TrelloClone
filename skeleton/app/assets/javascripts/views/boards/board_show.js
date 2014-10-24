@@ -8,7 +8,7 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 	},
 
 	events: {
-		'click :not(#new-list-form, #new-list-form *)': 'deactivateForm'
+		'click :not(#new-list-form, #new-list-form *)': 'deactivateNewListForm',
 	},
 
 	render: function () {
@@ -40,34 +40,35 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
 
 		var newList = new TrelloClone.Models.List({board_id: this.model.id});
 		var subview = new TrelloClone.Views.ListForm({
-			model: newList
+			model: newList,
+			collection: this.model.lists()
 		});
 		this.addSubview('div#new-list-form', subview);
 
 		return this;
 	},
 
-	addList: function (model) {
+	addList: function (card) {
 		var subview = new TrelloClone.Views.ListShow({
 			el: $('<li>'),
-			model: model
+			model: card
 		});
 		this.addSubview('ul.board-lists', subview);
 	},
 
-	removeList: function (model) {
+	removeList: function (card) {
 		var subview = this.subviews('ul.board-lists').filter(function (subviewEl) {
-			return subviewEl.model === model;
+			return subviewEl.model === card;
 		})[0];
 
 		this.removeSubview('ul.board-lists', subview);
 	},
 
-	deactivateForm: function (event) {
-		var formSubview = this.subviews('div#new-list-form')[0];
-		if (formSubview) {
-			formSubview.formActive = false;
-			formSubview.render();
+	deactivateNewListForm: function () {
+		var listForm = this.subviews('div#new-list-form')[0];
+		if (listForm) {
+			listForm.formActive = false;
+			listForm.render();
 		}
 	}
 });
