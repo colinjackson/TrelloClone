@@ -14,6 +14,7 @@ module Api
 
     def destroy
       @list = List.find(params[:id])
+      puts "THIS IS THE LIST!!!!!!", @list
       @list.destroy
       render json: {}
     end

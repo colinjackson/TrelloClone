@@ -16,5 +16,9 @@ TrelloClone.Models.List = Backbone.Model.extend({
 		}
 
 		return this._cards;
+	},
+
+	board: function () {
+		return TrelloClone.Collections.boards.getOrFetch(this.get("board_id"));
 	}
 });

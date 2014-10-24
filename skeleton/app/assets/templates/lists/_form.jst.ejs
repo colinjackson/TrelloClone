@@ -1,0 +1,11 @@
+<% if (!formActive) { %>
+	<a class="show-list-form", href="javascript:void(0)">Add a list...</a>
+<% } else { %>
+	<form>
+		<input type="hidden" name="list[board_id]"
+				value="<%= list.get("board_id") %>">
+		<input type="text" name="list[title]" id="list_title"
+				value="<%= list.get("title") %>">
+		<button>Save</button>
+	</form>
+<% } %>
