@@ -55,6 +55,6 @@ TrelloClone.Routers.SiteRouter = Backbone.Router.extend({
 	},
 
 	_clearModal: function () {
-		this.$_currentModal && this._currentModal.remove();
+		this._currentModal && this._currentModal.remove();
 	}
 })

@@ -10,8 +10,9 @@
  *
  *= require_self
  *= require jquery.ui.all
- *= require_tree .
+ *= require reset
+ *= require header
  */
 
-@import "bootstrap";
+// @import "bootstrap";
 @import "font-awesome";

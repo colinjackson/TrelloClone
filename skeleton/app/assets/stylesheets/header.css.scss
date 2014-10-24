@@ -1,0 +1,111 @@
+/* HEADER STYLES */
+.header {
+  position: fixed;
+  width: 100%;
+  background: rgb(33, 107, 151);
+  color: white;
+  font-weight: bold;
+}
+
+.header > div {
+  height: 30px;
+  margin: 5px;
+}
+
+.header img {
+  float: left;
+}
+
+.header > div > button {
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  height: 100%;
+  padding: 5px 8px;
+}
+
+.header > div > button > span {
+  font-size: 0.9em;
+  float: left;
+  line-height: 20px;
+}
+
+
+/* NAVBAR LEFT */
+
+.navbar-left {
+  float: left;
+}
+
+.navbar-left > *  {
+  display: block;
+  float: left;
+}
+
+.navbar-boards-list .trellicon {
+  width: 20px;
+  height: 20px;
+}
+
+.navbar-boards-list > span {
+  margin: 0 0 0 8px;
+}
+
+.navbar-search {
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  width: 175px;
+  height: 20px;
+  padding: 5px 8px;
+  margin: 0 0 0 8px;
+}
+
+
+/* NAVBAR CENTER */
+
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar-center .trellogo {
+  width: 80px;
+  height: 30px;
+  opacity: 0.50;
+}
+
+
+/* NAVBAR RIGHT */
+
+.navbar-right {
+  float: right;
+}
+
+.navbar-right > button {
+  margin: 0 0 0 4px;
+}
+
+.navbar-add-board {
+  font-weight: normal;
+  font-size: 2em;
+}
+
+.navbar-add-board > span {
+  transform: translateY(-5%);
+}
+
+.navbar-user-options {
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-user-options > .user-picture {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 30px;
+}
+
+.navbar-user-options > span {
+  margin: 0 0 0 32px;
+}

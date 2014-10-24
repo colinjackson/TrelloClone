@@ -1,33 +1,26 @@
-<nav class="navbar navbar-default" role="navigation">
-<div class="container container-fluid">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
+<header class="header">
+  <div class="navbar-left">
+    <button class="navbar-boards-list">
+      <img class="trellicon" src="<%= image_path('trellicon.png') %>">
+      <span>Boards</span>
     </button>
-    <a class="navbar-brand" href="#">Trello Clone</a>
+    <input class="navbar-search" type="text" value="">
   </div>
 
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-right">
-    <% if signed_in? %>
-      <li id='add-dropdown' class='dropdown'>
-        <button
-          class='dropdown-toggle navbar-btn btn btn-primary'
-          data-toggle='dropdown'><span class='glyphicon glyphicon-plus'></span>
-        </button>
-      </li>
-      <li><%= button_to "Sign out", session_url, method: :delete, class: "btn btn-primary navbar-btn" %></li>
-    <% else %>
-      <li><%= link_to "Log in", new_session_url %></li>
-      <li><%= link_to "Sign up", new_user_url %></li>
-    <% end %>
-    </ul>
+  <div class="navbar-center">
+    <img class="trellogo" src="<%= image_path('trellogo.png') %>">
   </div>
-</div>
-</nav>
+
+  <div class="navbar-right">
+    <button class="navbar-add-board"><span>+</span></button>
+    <button class="navbar-user-options">
+      <img class="user-picture" src="<%= image_path('katt.jpeg') %>">
+      <span><%= current_user.email %></span>
+    </button>
+    <button class="navbar-notifications-list"><span>A</span></button>
+  </div>
+</header>
+
 
 <% if flash[:errors] %>
 <div class="alert alert-warning alert-dismissible" role="alert">
