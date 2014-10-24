@@ -1,5 +1,6 @@
 TrelloClone.Views.ItemItem = Backbone.View.extend({
   tagName: 'li',
+  className: 'item-item',
   template: JST['items/_item'],
 
   initialize: function () {

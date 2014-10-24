@@ -1,0 +1,34 @@
+#main {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.boards-index {
+  font-weight: bold;
+}
+
+.boards-index h1 {
+  position: relative;
+  margin: 40px 0 10px 0;
+}
+
+.boards-index h1:before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  display: block;
+  background-image: image-url('grey-man.png');
+  background-size: 15px 15px;
+  width: 15px;
+  height: 15px;
+}
+
+.boards-index .board-item {
+  display: block;
+  float: left;
+  height: 105px;
+  width: 20%;
+  padding: 10px;
+  margin: 10px;
+  background: red;
+}

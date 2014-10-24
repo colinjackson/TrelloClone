@@ -1,5 +1,5 @@
 TrelloClone.Views.CardModal = Backbone.CompositeView.extend({
-  className: 'modal-view',
+  className: 'card-modal modal-view',
   template: JST['cards/modal'],
 
   initialize: function () {
